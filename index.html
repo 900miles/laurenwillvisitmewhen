@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>🥳🥳🥳</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <div id="countdown">
+            <div class="timer">
+                <span id="days"></span>
+                <span class="smallText">days</span>
+            </div>
+            <div class="timer">
+                <span id="hours"></span>
+                <span class="smallText">hours</span>
+            </div>
+            <div class="timer">
+                <span id="minutes"></span>
+                <span class="smallText">minutes</span>
+            </div>
+            <div class="timer">
+                <span id="seconds"></span>
+                <span class="smallText">seconds</span>
+            </div>
+
+        </div>
+        <span id="subtext">until Lauren visits me ❤</span>
+    </body>
+</html>
+
+<div>
+<script type="text/javascript">
+    const arrival_date = 'August 22 2020 12:33:00 GMT-0700';
+
+    function getTimeRemaining(endtime) {
+      const total = Date.parse(endtime) - Date.parse(new Date());
+      const seconds = Math.floor( (total/1000) % 60 );
+      const minutes = Math.floor( (total/1000/60) % 60 );
+      const hours = Math.floor( (total/(1000*60*60)) % 24 );
+      const days = Math.floor( total/(1000*60*60*24) );
+
+      return {
+        total,
+        days,
+        hours,
+        minutes,
+        seconds
+      };
+    }
+
+    function initializeClock(id, endtime) {
+      const clock = document.getElementById(id);
+      const daysSpan = clock.querySelector('#days');
+      const hoursSpan = clock.querySelector('#hours');
+      const minutesSpan = clock.querySelector('#minutes');
+      const secondsSpan = clock.querySelector('#seconds');
+
+      function updateClock(){
+          const t = getTimeRemaining(endtime);
+          daysSpan.innerHTML = t.days;
+          hoursSpan.innerHTML = t.hours;
+          minutesSpan.innerHTML = t.minutes;
+          secondsSpan.innerHTML = t.seconds;
+          if (t.total <= 0) {
+            clearInterval(timeinterval);
+          }
+        }
+
+        updateClock(); // run function once at first to avoid delay
+        var timeinterval = setInterval(updateClock,1000);
+    }
+
+    initializeClock("countdown", arrival_date)
+
+
+</script>
+</div>
+
+<style>
+    html {
+        background-color: #ee5577;
+        font-family: 'Lato', sans-serif;
+        color: white;
+    }
+    body {
+        padding: 2em;
+        padding-top: 5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        align-items: center;
+    }
+    #countdown {
+        width: 100%;
+        margin: auto;
+        margin-bottom: 1em;
+        font-size: 5em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+
+    }
+    .smallText {
+        font-size: 0.4em;
+    }
+
+    #subtext {
+        font-size: 2em;
+    }
+
+    @media only screen and (max-width: 640px) {
+
+      #countdown {
+          flex-direction: column;
+          align-items: first baseline;
+          width: auto;
+      }
+
+      .timer {
+          width: auto;
+      }
+
+}
+</style>
+</div>
