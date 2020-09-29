@@ -3,38 +3,40 @@
 <html>
     <head>
         <title>🥳🥳🥳</title>
-         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet" />
+
+        <link rel="stylesheet" href="odometer-theme-default.css" />
+        <script src="odometer.js"></script>
     </head>
 
     <body>
         <div id="countdown">
             <div class="timer">
-                <span id="days"></span>
+                <span class="odometer" id="days"></span>
                 <span class="smallText">days</span>
             </div>
             <div class="timer">
-                <span id="hours"></span>
+                <span class="odometer" id="hours"></span>
                 <span class="smallText">hours</span>
             </div>
             <div class="timer">
-                <span id="minutes"></span>
+                <span class="odometer" id="minutes"></span>
                 <span class="smallText">minutes</span>
             </div>
             <div class="timer">
-                <span id="seconds"></span>
+                <span class="odometer" id="seconds"></span>
                 <span class="smallText">seconds</span>
             </div>
 
         </div>
-        <span id="subtext">until Lauren visits me ❤</span>
+        <span id="subtext">until Lauren visits me again ❤</span>
     </body>
 </html>
 
-<div>
 <script type="text/javascript">
-    const arrival_date = 'August 22 2020 12:33:00 GMT-0700';
+    const arrival_date = 'October 09 2020 21:35:00 GMT-0700';
 
     function getTimeRemaining(endtime) {
       const total = Date.parse(endtime) - Date.parse(new Date());
@@ -61,13 +63,16 @@
 
       function updateClock(){
           const t = getTimeRemaining(endtime);
+          if (t.total <= 0) {
+              clearInterval(timeinterval);
+              document.getElementById("countdown").innerHTML = "<span style=''>She's here! 🥳</span>"
+              document.getElementById("subtext").remove()
+          }
+
           daysSpan.innerHTML = t.days;
           hoursSpan.innerHTML = t.hours;
           minutesSpan.innerHTML = t.minutes;
           secondsSpan.innerHTML = t.seconds;
-          if (t.total <= 0) {
-            clearInterval(timeinterval);
-          }
         }
 
         updateClock(); // run function once at first to avoid delay
@@ -78,7 +83,6 @@
 
 
 </script>
-</div>
 
 <style>
     html {
@@ -127,4 +131,3 @@
 
 }
 </style>
-</div>
