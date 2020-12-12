@@ -8,7 +8,16 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet" />
 
         <link rel="stylesheet" href="odometer-theme-default.css" />
-        <script src="odometer.js"></script>
+        <script>
+        window.odometerOptions = {
+            auto: true, // Don't automatically initialize everything with class 'odometer'
+            selector: '.odometer', // Change the selector used to automatically find things to be animated
+            duration: 900, // Change how long the javascript expects the CSS animation to take
+            minIntegerLen: 2,
+            theme: 'default',
+        };
+    </script>
+        <script src="odometer.min.js"></script>
     </head>
 
     <body>
@@ -31,12 +40,12 @@
             </div>
 
         </div>
-        <span id="subtext">until Lauren visits me again ❤</span>
+        <span id="subtext">until we're together again ❤</span>
     </body>
 </html>
 
 <script type="text/javascript">
-    const arrival_date = 'October 09 2020 21:37:00 GMT-0700';
+    const arrival_date = 'January 18 2021 12:30:00 GMT-0800';
 
     function getTimeRemaining(endtime) {
       const total = Date.parse(endtime) - Date.parse(new Date());
@@ -65,7 +74,7 @@
           const t = getTimeRemaining(endtime);
           if (t.total <= 0) {
               clearInterval(timeinterval);
-              document.getElementById("countdown").innerHTML = "<span style=''>She's here! 🥳</span>"
+              document.getElementById("countdown").innerHTML = "<span style='background-color: #ee5577; text-align: center;'>We're together again! 🥳</span>"
               document.getElementById("subtext").remove()
           }
 
@@ -80,17 +89,18 @@
     }
 
     initializeClock("countdown", arrival_date)
-
-
 </script>
 
 <style>
     html {
         background-color: #ee5577;
+        background-image: url("bg.svg");
+        background-size: 970px;
         font-family: 'Lato', sans-serif;
         color: white;
     }
     body {
+        margin: 0px;
         padding: 2em;
         padding-top: 5em;
         display: flex;
@@ -107,8 +117,11 @@
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-
     }
+    .timer, #subtext {
+        background-color: #ee5577;
+    }
+
     .smallText {
         font-size: 0.4em;
     }
