@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>🥳🥳🥳</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet" />
+
+        <link rel="stylesheet" href="odometer-theme-default.css" />
+        <script>
+        window.odometerOptions = {
+            auto: true, // Don't automatically initialize everything with class 'odometer'
+            selector: '.odometer', // Change the selector used to automatically find things to be animated
+            duration: 900, // Change how long the javascript expects the CSS animation to take
+            minIntegerLen: 2,
+            theme: 'default',
+        };
+    </script>
+        <script src="odometer.min.js"></script>
+    </head>
+
+    <body>
+        <div id="countdown">
+            <div class="timer">
+                <span class="odometer" id="days"></span>
+                <span class="smallText">days</span>
+            </div>
+            <div class="timer">
+                <span class="odometer" id="hours"></span>
+                <span class="smallText">hours</span>
+            </div>
+            <div class="timer">
+                <span class="odometer" id="minutes"></span>
+                <span class="smallText">minutes</span>
+            </div>
+            <div class="timer">
+                <span class="odometer" id="seconds"></span>
+                <span class="smallText">seconds</span>
+            </div>
+
+        </div>
+        <span id="subtext">until we're together again ❤</span>
+    </body>
+</html>
+
+<script type="text/javascript">
+    const arrival_date = 'January 18 2021 12:30:00 GMT-0800';
+
+    function getTimeRemaining(endtime) {
+      const total = Date.parse(endtime) - Date.parse(new Date());
+      const seconds = Math.floor( (total/1000) % 60 );
+      const minutes = Math.floor( (total/1000/60) % 60 );
+      const hours = Math.floor( (total/(1000*60*60)) % 24 );
+      const days = Math.floor( total/(1000*60*60*24) );
+
+      return {
+        total,
+        days,
+        hours,
+        minutes,
+        seconds
+      };
+    }
+
+    function initializeClock(id, endtime) {
+      const clock = document.getElementById(id);
+      const daysSpan = clock.querySelector('#days');
+      const hoursSpan = clock.querySelector('#hours');
+      const minutesSpan = clock.querySelector('#minutes');
+      const secondsSpan = clock.querySelector('#seconds');
+
+      function updateClock(){
+          const t = getTimeRemaining(endtime);
+          if (t.total <= 0) {
+              clearInterval(timeinterval);
+              document.getElementById("countdown").innerHTML = "<span style='background-color: #ee5577; text-align: center;'>We're together again! 🥳</span>"
+              document.getElementById("subtext").remove()
+          }
+
+          daysSpan.innerHTML = t.days;
+          hoursSpan.innerHTML = t.hours;
+          minutesSpan.innerHTML = t.minutes;
+          secondsSpan.innerHTML = t.seconds;
+        }
+
+        updateClock(); // run function once at first to avoid delay
+        var timeinterval = setInterval(updateClock,1000);
+    }
+
+    initializeClock("countdown", arrival_date)
+</script>
+
+<style>
+    html {
+        background-color: #ee5577;
+        background-image: url("bg.svg");
+        background-size: 970px;
+        font-family: 'Lato', sans-serif;
+        color: white;
+    }
+    body {
+        margin: 0px;
+        padding: 2em;
+        padding-top: 5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        align-items: center;
+    }
+    #countdown {
+        width: 100%;
+        margin: auto;
+        margin-bottom: 1em;
+        font-size: 5em;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .timer, #subtext {
+        background-color: #ee5577;
+    }
+
+    .smallText {
+        font-size: 0.4em;
+    }
+
+    #subtext {
+        font-size: 2em;
+    }
+
+    @media only screen and (max-width: 640px) {
+
+      #countdown {
+          flex-direction: column;
+          align-items: first baseline;
+          width: auto;
+      }
+
+      .timer {
+          width: auto;
+      }
+
+}
+</style>
