@@ -7,7 +7,7 @@
 
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet" />
 
-        <link rel="stylesheet" href="odometer-theme-default.css" />
+        <!-- <link rel="stylesheet" href="odometer-theme-default.css" />
         <script>
         window.odometerOptions = {
             auto: true, // Don't automatically initialize everything with class 'odometer'
@@ -17,10 +17,11 @@
             theme: 'default',
         };
     </script>
-        <script src="odometer.min.js"></script>
+        <script src="odometer.min.js"></script> -->
     </head>
 
     <body>
+        <span id="subtext">About</span>
         <div id="countdown">
             <div class="timer">
                 <span class="odometer" id="days"></span>
@@ -40,15 +41,15 @@
             </div>
 
         </div>
-        <span id="subtext">until we're together again ❤</span>
+        <span id="subtext">since she left me 😭</span>
     </body>
 </html>
 
 <script type="text/javascript">
-    const arrival_date = 'January 18 2021 23:00:00 GMT-0500';
+    const arrival_date = 'June 21 2021 23:00:00 GMT-0400';
 
     function getTimeRemaining(endtime) {
-      const total = Date.parse(endtime) - Date.parse(new Date());
+      const total = Date.parse(new Date()) - Date.parse(endtime);
       const seconds = Math.floor( (total/1000) % 60 );
       const minutes = Math.floor( (total/1000/60) % 60 );
       const hours = Math.floor( (total/(1000*60*60)) % 24 );
@@ -93,8 +94,8 @@
 
 <style>
     html {
-        background-color: #ee5577;
-        background-image: url("bg.svg");
+        background-color: #2c345c; /* #ee5577; */
+        background-image: url("bg-sad.svg");
         background-size: 970px;
         font-family: 'Lato', sans-serif;
         color: white;
@@ -119,7 +120,7 @@
         justify-content: space-evenly;
     }
     .timer, #subtext {
-        background-color: #ee5577;
+        background-color: #2c345c;
     }
 
     .smallText {
